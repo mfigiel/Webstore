@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "com.packt.webstore.domain.Order" table = "shoporder">
+      
+      <meta attribute = "class-description">
+         This class contains the order detail. 
+      </meta>
+      
+      <id name = "id" type = "int" column = "idorder">
+         <generator class="native"/>
+      </id>
+      
+      <property name = "orderDate" column = "orderdate" type = "date" not-null="false"/>
+      <many-to-one name = "customer" column = "customer" 
+         class="com.packt.webstore.domain.Customer" not-null="false"/>
+      
+      <set name="products" table="products_in_order" cascade="all">
+            <key column="shoporder" />
+            <composite-element class="com.packt.webstore.domain.Products.OrderedProduct">
+            <many-to-one name="product" column="product_in_order"  class="com.packt.webstore.domain.Products.Product" />
+            <property name="quantity" type="int" column="product_quantity" />
+       		</composite-element>
+        </set>
+        
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+   
+      <property name = "hibernate.dialect">
+         org.hibernate.dialect.MySQLDialect
+      </property>
+      
+      <property name = "hibernate.connection.driver_class">
+         com.mysql.jdbc.Driver
+      </property>
+      
+      <!-- Assume test is the database name -->
+      
+      <property name = "hibernate.connection.url">
+         jdbc:mysql://127.0.0.1:3306/webstore
+      </property>
+      
+      <property name = "hibernate.connection.username">
+         admin
+      </property>
+      
+      <property name = "hibernate.connection.password">
+         admin
+      </property>
+      
+      <property name = "javax.persistence.validation.mode">
+         NONE
+      </property>
+      
+      <!-- List of XML mapping files -->
+      <mapping resource = "customer.hbm.xml"/>
+      <mapping resource = "product.hbm.xml"/>
+      <mapping resource = "order.hbm.xml"/>
+   </session-factory>
+</hibernate-configuration>
